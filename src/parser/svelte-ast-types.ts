@@ -21,7 +21,6 @@ export declare type TemplateNode =
   | RawMustacheTag
   | DebugTag
   | ConstTag
-  | RenderTag
   | Directive
   | StyleDirective
   | Element
@@ -38,8 +37,7 @@ export declare type TemplateNode =
   | IfBlock
   | EachBlock
   | AwaitBlock
-  | KeyBlock
-  | SnippetBlock;
+  | KeyBlock;
 export interface Fragment extends BaseNode {
   type: "Fragment";
   children: TemplateNode[];
@@ -63,11 +61,6 @@ export interface DebugTag extends BaseNode {
 export interface ConstTag extends BaseNode {
   type: "ConstTag";
   expression: ESTree.AssignmentExpression;
-}
-export interface RenderTag extends BaseNode {
-  type: "RenderTag";
-  expression: ESTree.Identifier;
-  argument: null | ESTree.Expression;
 }
 export interface IfBlock extends BaseNode {
   type: "IfBlock";
@@ -119,13 +112,6 @@ export interface KeyBlock extends BaseNode {
   expression: ESTree.Expression;
   children: TemplateNode[];
 }
-export interface SnippetBlock extends BaseNode {
-  type: "SnippetBlock";
-  expression: ESTree.Identifier;
-  context: null | ESTree.Pattern;
-  children: TemplateNode[];
-}
-
 export interface BaseElement extends BaseNode {
   type: "Element";
   name: string;
